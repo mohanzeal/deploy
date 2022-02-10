@@ -16,4 +16,4 @@ jobs:
       uses: actions/checkout@master
       with:
           repository: mohanzeal/product-comparison
-          github-token: ${{ github.token }}
+          token: ${{ secrets.CP_PROD_DEPLOY }}
