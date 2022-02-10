@@ -22,24 +22,28 @@ jobs:
           ref: dev
           token: ${{ secrets.CP_PROD_DEPLOY }}
 
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 17.2.0
+    - name: Upload `.serverless` state to S3
+      run: aws s3 sync packages/comparablez/public s3://aws-serverless-config-files/comparablez-frontend/
+prod/ 
 
-    - name: Install Yarn
-      run: npm install -g yarn
+#     - uses: actions/setup-node@v1
+#       with:
+#         node-version: 17.2.0
 
-    - name: Install dependencies
-      run: yarn install
+#     - name: Install Yarn
+#       run: npm install -g yarn
 
-    - name: Run lint
-      run: yarn lint
+#     - name: Install dependencies
+#       run: yarn install
 
-    - name: Run tests
-      run: yarn test
+#     - name: Run lint
+#       run: yarn lint
+
+#     - name: Run tests
+#       run: yarn test
       
-    - name: cd to comparablez package
-      run: |
-        pwd
-        cd packages/comparablez
-        pwd
+#     - name: cd to comparablez package
+#       run: |
+#         pwd
+#         cd packages/comparablez
+#         pwd
