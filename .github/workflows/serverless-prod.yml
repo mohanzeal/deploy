@@ -33,11 +33,14 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
-    - name: Run lint
+    - name: Run lint on all packages
       run: yarn lint
 
-    - name: Run tests
+    - name: Run tests on all packages
       run: yarn test
+    
+    - name: Run Build on all packages
+      run: yarn build
 
 #     - name: Download `.serverless` state from S3
 #       run: aws s3 sync s3://aws-serverless-config-files/comparablez-frontend/prod/.serverless packages/comparablez/.serverless --delete 
