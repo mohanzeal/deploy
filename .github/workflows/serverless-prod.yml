@@ -23,8 +23,7 @@ jobs:
           token: ${{ secrets.CP_PROD_DEPLOY }}
 
     - name: Upload `.serverless` state to S3
-      run: aws s3 sync packages/comparablez/public s3://aws-serverless-config-files/comparablez-frontend/
-prod/ 
+      run: aws s3 sync packages/comparablez/public s3://aws-serverless-config-files/comparablez-frontend/prod/ 
 
 #     - uses: actions/setup-node@v1
 #       with:
