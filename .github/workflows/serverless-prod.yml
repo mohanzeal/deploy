@@ -16,14 +16,17 @@ jobs:
       AWS_REGION: 'us-east-1'
       SPACE_ID: ${{secrets.SPACE_ID}}
       ACCESS_TOKEN: ${{secrets.ACCESS_TOKEN}}
+      SITE_URL: ${{secrets.SITE_URL}}
+      NEXT_PUBLIC_GA_ID: ${{secrets.NEXT_PUBLIC_GA_ID}}
       NEXTJS_REVALIDATE_INTERVAL: ${{secrets.NEXTJS_REVALIDATE_INTERVAL}}
+      
 
     steps:
-    - name: Check out repo dev branch
+    - name: Check out repo master branch
       uses: actions/checkout@v2
       with:
           repository: mohanzeal/product-comparison
-          ref: dev
+          ref: master
           token: ${{ secrets.CP_PROD_DEPLOY }}
 
     - name: Cache Yarn root node_modules
@@ -51,8 +54,8 @@ jobs:
     - name: Run Build on all packages
       run: yarn build
 
-#     - name: Download `.serverless` state from S3
-#       run: aws s3 sync s3://aws-serverless-config-files/comparablez-frontend/prod/.serverless packages/comparablez/.serverless --delete 
+    - name: Download `.serverless` state from S3
+      run: aws s3 sync s3://aws-serverless-config-files/comparablez-frontend/prod/.serverless packages/comparablez/.serverless --delete 
 
     - name: Deploy to AWS
       run: cd packages/comparablez && yarn deploy
