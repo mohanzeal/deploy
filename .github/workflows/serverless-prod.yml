@@ -14,11 +14,11 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
       AWS_REGION: 'us-east-1'
-      SPACE_ID: ${{secrets.SPACE_ID}}
-      ACCESS_TOKEN: ${{secrets.ACCESS_TOKEN}}
-      SITE_URL: ${{secrets.SITE_URL}}
+      SPACE_ID: ${{secrets.NEXT_PUBLIC_SPACE_ID}}
+      ACCESS_TOKEN: ${{secrets.NEXT_PUBLIC_ACCESS_TOKEN}}
+      SITE_URL: ${{secrets.NEXT_PUBLIC_SITE_URL}}
       NEXT_PUBLIC_GA_ID: ${{secrets.NEXT_PUBLIC_GA_ID}}
-      NEXTJS_REVALIDATE_INTERVAL: ${{secrets.NEXTJS_REVALIDATE_INTERVAL}}
+      NEXTJS_REVALIDATE_INTERVAL: ${{secrets.NEXT_PUBLIC_REVALIDATE_INTERVAL}}
       
 
     steps:
@@ -55,7 +55,11 @@ jobs:
       run: yarn build
 
     - name: Download `.serverless` state from S3
-      run: aws s3 sync s3://aws-serverless-config-files/comparablez-frontend/prod/.serverless packages/comparablez/.serverless --delete 
+      run: |
+        cd packages/comparablez 
+        aws s3 sync s3://aws-serverless-config-files/comparablez-frontend/prod/.serverless .serverless --delete
+        ls -lah
+        cd .serverless && ls -lah
 
     - name: Deploy to AWS
       run: cd packages/comparablez && yarn deploy
