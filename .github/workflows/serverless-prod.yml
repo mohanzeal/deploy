@@ -65,7 +65,6 @@ jobs:
 
     - name: Download `.serverless` state from S3
       run: |
-        echo cwd
         aws s3 sync s3://aws-serverless-config-files/comparablez-frontend/prod packages/comparablez/.serverless --delete
         ls -lah
         cd packages/comparablez/.serverless && ls -lah
