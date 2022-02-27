@@ -54,14 +54,14 @@ jobs:
       if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn install
 
-#     - name: Run lint on all packages
-#       run: yarn lint
+    - name: Run lint on all packages
+      run: yarn lint
 
-#     - name: Run tests on all packages
-#       run: yarn test
+    - name: Run tests on all packages
+      run: yarn test
     
-#     - name: Run Build on all packages
-#       run: yarn build
+    - name: Run Build on all packages
+      run: yarn build
 
     - name: Download `.serverless` state from S3
       run: |
@@ -74,5 +74,5 @@ jobs:
     - name: Deploy to AWS
       run: cd packages/comparablez && yarn deploy:remove
 
-#     - name: Upload `.serverless` state to S3
-#       run: aws s3 sync packages/comparablez/.serverless s3://aws-serverless-config-files/comparablez-frontend/prod/ --delete 
+    - name: Upload `.serverless` state to S3
+      run: aws s3 sync packages/comparablez/.serverless s3://aws-serverless-config-files/comparablez-frontend/prod/ --delete 
