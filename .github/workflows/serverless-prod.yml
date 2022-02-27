@@ -29,6 +29,9 @@ jobs:
           ref: master
           token: ${{ secrets.CP_PROD_DEPLOY }}
     
+    - name: Install serverless globally
+      run: npm install -g serverless@2.72.2
+    
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
@@ -37,22 +40,19 @@ jobs:
       uses: actions/cache@v2
       id: yarn-cache
       with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
+          path: |
+            **/node_modules
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
     - uses: actions/setup-node@v1
       with:
         node-version: 17.2.0
 
-    - name: Install Yarn
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
-      run: npm install -g yarn serverless@2.72.2
-
     - name: Install dependencies
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
-      run: yarn install
+      run: yarn install --frozen-lockfile
 
     - name: Run lint on all packages
       run: yarn lint
