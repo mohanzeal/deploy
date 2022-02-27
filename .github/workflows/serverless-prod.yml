@@ -28,41 +28,51 @@ jobs:
           repository: mohanzeal/product-comparison
           ref: master
           token: ${{ secrets.CP_PROD_DEPLOY }}
+    
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
 
     - name: Cache Yarn root node_modules
       uses: actions/cache@v2
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
       with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
 
     - uses: actions/setup-node@v1
       with:
         node-version: 17.2.0
 
     - name: Install Yarn
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: npm install -g yarn serverless@2.72.2
 
     - name: Install dependencies
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn install
 
-    - name: Run lint on all packages
-      run: yarn lint
+#     - name: Run lint on all packages
+#       run: yarn lint
 
-    - name: Run tests on all packages
-      run: yarn test
+#     - name: Run tests on all packages
+#       run: yarn test
     
-    - name: Run Build on all packages
-      run: yarn build
+#     - name: Run Build on all packages
+#       run: yarn build
 
     - name: Download `.serverless` state from S3
       run: |
         cd packages/comparablez 
-        aws s3 sync s3://aws-serverless-config-files/comparablez-frontend/prod/.serverless .serverless --delete
+        aws s3 sync s3://aws-serverless-config-files/comparablez-frontend/prod/.serverless packages/comparablez/.serverless --delete
         ls -lah
         cd .serverless && ls -lah
+        echo 'done'
 
-    - name: Deploy to AWS
-      run: cd packages/comparablez && yarn deploy
+#     - name: Deploy to AWS
+#       run: cd packages/comparablez && yarn deploy
 
-    - name: Upload `.serverless` state to S3
-      run: aws s3 sync packages/comparablez/.serverless s3://aws-serverless-config-files/comparablez-frontend/prod/ --delete 
+#     - name: Upload `.serverless` state to S3
+#       run: aws s3 sync packages/comparablez/.serverless s3://aws-serverless-config-files/comparablez-frontend/prod/ --delete 
