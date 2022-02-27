@@ -49,7 +49,7 @@ jobs:
         node-version: 17.2.0
     
     - name: Install Yarn
-      run: npm install -g yarn serverless@2.72.2
+      run: npm install -g serverless@2.72.2
 
     - name: Install dependencies
       run: yarn install --immutable
@@ -72,7 +72,7 @@ jobs:
         echo 'done'
 
     - name: Deploy to AWS
-      run: cd packages/comparablez && yarn deploy:remove
+      run: cd packages/comparablez && yarn deploy
 
     - name: Upload `.serverless` state to S3
       run: aws s3 sync packages/comparablez/.serverless s3://aws-serverless-config-files/comparablez-frontend/prod/ --delete 
