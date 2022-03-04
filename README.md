@@ -4,3 +4,4 @@
 * Release - v1.2 - remove redirect
 * Release - v1.3 - fallback blocking
 * Release - v1.4 - lighthouse fixes and www to non www redirect
+* Release - v1.5 - date, authors, image slider comparison, image lightbox and other css bug fixes
