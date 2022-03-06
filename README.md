@@ -6,3 +6,4 @@
 * Release - v1.4 - lighthouse fixes and www to non www redirect
 * Release - v1.5 - date, authors, image slider comparison, image lightbox and other css bug fixes
 * Release - v1.6 - missing blog post date, typography buttons and small css fixes
+* Release - v1.7 - fix: sitemap not updating at build time
