@@ -9,3 +9,4 @@
 * Release - v1.7 - fix: sitemap not updating at build time
 * Release - v1.8 - fix: issue when adding a new sector and integrate sharethis floating share buttons
 * Release - v1.9 - add contentful env as dev in prod for urgent fix of 500 issues
+* Revert  - v1.10 - review last to releases due to issue with environments in contenful
