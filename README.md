@@ -10,3 +10,4 @@
 * Release - v1.8 - fix: issue when adding a new sector and integrate sharethis floating share buttons
 * Release - v1.9 - add contentful env as dev in prod for urgent fix of 500 issues
 * Revert  - v1.10 - review last to releases due to issue with environments in contenful
+* Release - v1.11 - set contentful environment correctly and re deploy last reverted changes
