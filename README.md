@@ -1,4 +1,4 @@
-# Releases Version
+# Release Version
 * Release - v1.0 - initial seo friendly site
 * Release - v1.1 - seo changes and add domain and redirect www to root domain
 * Release - v1.2 - remove redirect
@@ -12,3 +12,4 @@
 * Revert  - v1.10 - review last to releases due to issue with environments in contenful
 * Release - v1.11 - set contentful environment correctly and re deploy last reverted changes
 * Release - v1.12 - fix issue with call to action not returning when we add a new product from table multi select component, this resulted in 500 error from server
+* Release - v1.13 - fix productId.replaceAll function not working on the server, producing 500 error.
