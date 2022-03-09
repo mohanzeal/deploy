@@ -14,3 +14,4 @@
 * Release - v1.12 - fix issue with call to action not returning when we add a new product from table multi select component, this resulted in 500 error from server
 * Release - v1.13 - fix productId.replaceAll function not working on the server, producing 500 error.
 * Release - v1.14 - make link component seo friendly a tag and add nextjs css inline for seo benefits
+* Relaase - v1.15 - lazy/dynamically load components like comments and sharethis buttons. remove inline css as aws is not about find the css path in lambda.
