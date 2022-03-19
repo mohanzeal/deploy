@@ -15,3 +15,4 @@
 * Release - v1.13 - fix productId.replaceAll function not working on the server, producing 500 error.
 * Release - v1.14 - make link component seo friendly a tag and add nextjs css inline for seo benefits
 * Relaase - v1.15 - lazy/dynamically load components like comments and sharethis buttons. remove inline css as aws is not about find the css path in lambda.
+* Release - v1.16 - add author contenttype, ratings to products and more at (https://github.com/mohanzeal/product-comparison/pull/42)
