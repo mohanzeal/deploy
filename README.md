@@ -18,3 +18,4 @@
 * Release - v1.16 - add author contenttype, ratings to products and more at (https://github.com/mohanzeal/product-comparison/pull/42)
 * Release - v1.17 - integrate google adsense
 * Release - v1.18 - fix error by google adsense
+* Release - v1.19 - fix some google adsense issues
