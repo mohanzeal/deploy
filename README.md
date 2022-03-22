@@ -17,3 +17,4 @@
 * Relaase - v1.15 - lazy/dynamically load components like comments and sharethis buttons. remove inline css as aws is not about find the css path in lambda.
 * Release - v1.16 - add author contenttype, ratings to products and more at (https://github.com/mohanzeal/product-comparison/pull/42)
 * Release - v1.17 - integrate google adsense
+* Release - v1.18 - fix error by google adsense
