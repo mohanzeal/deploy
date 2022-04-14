@@ -19,3 +19,4 @@
 * Release - v1.17 - integrate google adsense
 * Release - v1.18 - fix error by google adsense
 * Release - v1.19 - fix some google adsense issues
+* Release - v1.20 - fix google adsense reporting thin content
