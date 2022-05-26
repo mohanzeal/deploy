@@ -9,6 +9,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    env:
+      # imported from .env.prod file
+      PORT: ${{secrets.SERVER_PORT}}
+      LOG_DIR: ${{secrets.SERVER_LOG_DIR}}
+      # mongodb secrets
+      DB_HOST: ${{secrets.SERVER_DB_HOST}}
+      DB_PORT: ${{secrets.SERVER_DB_PORT}}
+      DB_NAME: ${{secrets.SERVER_DB_NAME}}
+      DB_USER: ${{secrets.SERVER_DB_USER}}
+      DB_USER_PWD: ${{secrets.SERVER_DB_USER_PWD}}
+      # jwt secrets
+      JWT_SECRET: ${{secrets.SERVER_JWT_SECRET}}
+      JWT_EXP: ${{secrets.SERVER_JWT_EXP}}
+      # node cache
+      CACHE_DEFAULT_TTL: ${{secrets.SERVER_CACHE_DEFAULT_TTL}}
+      CACHE_HEADER_NAME: ${{secrets.SERVER_CACHE_HEADER_NAME}}
 
     steps:
     - name: Check out repo feat/server branch
@@ -43,9 +60,6 @@ jobs:
 
     - name: build all server dependent packages
       run: yarn server:build
-    
-    - name: export to static site
-      run: yarn server:export
 
     - name: Deploy to EC2 server
       uses: easingthemes/ssh-deploy@main
