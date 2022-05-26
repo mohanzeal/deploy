@@ -48,8 +48,8 @@ jobs:
     - name: Run tests on all packages
       run: yarn test
 
-    - name: Run Build on all packages
-      run: yarn build
+    - name: Run Build only admin dependent packages
+      run: yarn build-admin-pkgs
     
     - name: Run next export to Static Site
       run: yarn admin-export
