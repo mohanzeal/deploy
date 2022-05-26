@@ -42,17 +42,17 @@ jobs:
     - name: Install dependencies
       run: yarn install --immutable
 
-    - name: Run lint on all packages
-      run: yarn lint
+    - name: lint all admin dependent packages
+      run: yarn admin:lint
 
-    - name: Run tests on all packages
-      run: yarn test
+    - name: test all admin dependent packages
+      run: yarn admin:test
 
-    - name: Run Build only admin dependent packages
-      run: yarn build-admin-pkgs
+    - name: build all admin dependent packages
+      run: yarn admin:build
     
-    - name: Run next export to Static Site
-      run: yarn admin-export
+    - name: export to static site
+      run: yarn admin:export
 
     - name: Upload `out` folder to S3 bucket
       run: aws s3 sync packages/admin/out s3://comparablez-admin/
