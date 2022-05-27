@@ -18,53 +18,15 @@ jobs:
           ref: feat/server
           token: ${{ secrets.CP_PROD_DEPLOY }}
     
-    - name: Get yarn cache directory path
-      id: yarn-cache-server-folder
-      run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-    - name: Cache Yarn server node_modules
-      uses: actions/cache@v2
-      id: yarn-cache-server
+    - name: AWS SSM Send-Command
+      uses: peterkimzz/aws-ssm-send-command@master
+      id: ssm
       with:
-          path: |
-            **/node_modules
-            ${{ steps.yarn-cache-server-folder.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-    - name: Install dependencies
-      run: yarn install --immutable
+        aws-region: 'ap-south-1'
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        instance-ids: 'i-06b826c5b66f5fe8e'
 
-    - name: lint all server dependent packages
-      run: yarn server:lint
-
-    - name: test all server dependent packages
-      run: yarn server:test
-
-    - name: build all server dependent packages
-      run: yarn server:build
-      env:
-        # imported from .env.prod file
-        PORT: ${{secrets.SERVER_PORT}}
-        LOG_DIR: ${{secrets.SERVER_LOG_DIR}}
-        # mongodb secrets
-        DB_HOST: ${{secrets.SERVER_DB_HOST}}
-        DB_PORT: ${{secrets.SERVER_DB_PORT}}
-        DB_NAME: ${{secrets.SERVER_DB_NAME}}
-        DB_USER: ${{secrets.SERVER_DB_USER}}
-        DB_USER_PWD: ${{secrets.SERVER_DB_USER_PWD}}
-        # jwt secrets
-        JWT_SECRET: ${{secrets.SERVER_JWT_SECRET}}
-        JWT_EXP: ${{secrets.SERVER_JWT_EXP}}
-        # node cache
-        CACHE_DEFAULT_TTL: ${{secrets.SERVER_CACHE_DEFAULT_TTL}}
-        CACHE_HEADER_NAME: ${{secrets.SERVER_CACHE_HEADER_NAME}}
-
-    - name: Deploy to EC2 server
-      uses: easingthemes/ssh-deploy@main
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.EC2_NODE_SSH_KEY }}
-        SOURCE: "packages/server/"
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: ${{ secrets.REMOTE_TARGET }}
+        working-directory: /home/ec2-user/apps/product-comparison
+        command: ls -al
+        comment: Hello world!
