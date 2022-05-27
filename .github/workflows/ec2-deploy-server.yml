@@ -17,6 +17,30 @@ jobs:
           repository: mohanzeal/product-comparison
           ref: feat/server
           token: ${{ secrets.CP_PROD_DEPLOY }}
+
+    - name: Get yarn cache directory path
+      id: yarn-cache-server-folder
+      run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+    - name: Cache Yarn server node_modules
+      uses: actions/cache@v2
+      id: yarn-cache-server
+      with:
+          path: |
+            **/node_modules
+            ${{ steps.yarn-cache-server-folder.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+    - name: Install dependencies
+      run: yarn install --immutable
+
+    - name: lint all server dependent packages
+      run: yarn server:lint
+
+    - name: test all server dependent packages
+      run: yarn server:test
     
     - name: AWS SSM Send-Command
       uses: peterkimzz/aws-ssm-send-command@master
@@ -28,5 +52,5 @@ jobs:
         instance-ids: 'i-06b826c5b66f5fe8e'
 
         working-directory: /home/ec2-user/apps/product-comparison
-        command: ls -al
-        comment: Hello world!
+        command: /bin/sh deploy.sh
+        comment: Deploy latest code and restart pm2 app
