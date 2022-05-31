@@ -52,5 +52,5 @@ jobs:
         instance-ids: 'i-06b826c5b66f5fe8e'
 
         working-directory: /home/ec2-user/apps/product-comparison
-        command: /bin/sh deploy.sh
+        command: /bin/sh deploy-server.sh
         comment: Deploy latest code and restart pm2 app
