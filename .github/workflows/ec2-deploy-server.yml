@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out repo feat/server branch
+    - name: Check out repo master branch
       uses: actions/checkout@v2
       with:
           repository: mohanzeal/product-comparison
-          ref: feat/server
+          ref: master
           token: ${{ secrets.CP_PROD_DEPLOY }}
 
     - name: Get yarn cache directory path
