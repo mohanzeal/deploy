@@ -52,13 +52,13 @@ jobs:
       run: yarn install --immutable
 
     - name: Run lint on all packages
-      run: yarn lint
+      run: yarn comparablez:lint
 
     - name: Run tests on all packages
-      run: yarn test
+      run: yarn comparablez:test
     
     - name: Run Build on all packages
-      run: yarn build
+      run: yarn comparablez:build
 
     - name: Download `.serverless` state from S3
       run: |
