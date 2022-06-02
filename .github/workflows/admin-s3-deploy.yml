@@ -17,11 +17,11 @@ jobs:
       NEXT_PUBLIC_SITE_URL: ${{secrets.NEXT_PUBLIC_ADMIN_URL}}      
 
     steps:
-    - name: Check out repo feat/admin branch
+    - name: Check out master branch
       uses: actions/checkout@v2
       with:
           repository: mohanzeal/product-comparison
-          ref: feat/admin
+          ref: master
           token: ${{ secrets.CP_PROD_DEPLOY }}
     
     - name: Get yarn cache directory path
