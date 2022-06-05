@@ -17,6 +17,8 @@ jobs:
       NEXT_PUBLIC_SITE_URL: ${{secrets.NEXT_PUBLIC_ADMIN_URL}}
       AWS_ASSETS_BUCKET: ${{secrets.AWS_ASSETS_BUCKET}}
       AWS_ASSETS_BUCKET_REGION: ${{secrets.AWS_ASSETS_BUCKET_REGION}}
+      API_ENDPOINT: ${{secrets.API_ENDPOINT}}
+      ASSETS_UPLOAD_SERVER: ${{secrets.ASSETS_UPLOAD_SERVER}}
 
     steps:
     - name: Check out master branch
