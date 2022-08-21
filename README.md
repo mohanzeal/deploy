@@ -21,3 +21,4 @@
 * Release - v1.19 - fix some google adsense issues
 * Release - v1.20 - fix google adsense reporting thin content
 * Release - v1.21 - fix adsense position
+* Release - v1.3  - migrate from contentful headless cms to backend api
