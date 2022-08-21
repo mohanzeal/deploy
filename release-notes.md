@@ -1,0 +1,1 @@
+* Release v1.0 - move away from contentful to backend api
