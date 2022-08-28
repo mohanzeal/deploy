@@ -23,3 +23,4 @@
 * Release - v1.21 - fix adsense position
 * Release - v1.3  - migrate from contentful headless cms to backend api
 * Release - v2.0  - migration to backend api successful
+* Release - v2.1  - adjust website to start writing posts
