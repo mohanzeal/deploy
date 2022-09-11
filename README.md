@@ -24,3 +24,4 @@
 * Release - v1.3  - migrate from contentful headless cms to backend api
 * Release - v2.0  - migration to backend api successful
 * Release - v2.1  - adjust website to start writing posts
+* Release - v2.2  - related posts, recent posts, lazy loading of images, listicles intro, etc and minor bug fixes
