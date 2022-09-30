@@ -25,3 +25,4 @@
 * Release - v2.0  - migration to backend api successful
 * Release - v2.1  - adjust website to start writing posts
 * Release - v2.2  - related posts, recent posts, lazy loading of images, listicles intro, etc and minor bug fixes
+* Release - v2.3  - fix index page image issues
