@@ -20,3 +20,7 @@
 * Release - v1.18 - fix error by google adsense
 * Release - v1.19 - fix some google adsense issues
 * Release - v1.20 - rewrite tagslist for arraylist in nicheitems edit, scrap api enchancements
+* Release - v1.3 - 
+    1. NicheItems status
+    2. NicheItems category mapping
+    3. enhance attribute listicle type editor  searching
