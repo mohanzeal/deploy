@@ -4,3 +4,4 @@
 * Release v2.2 - recent posts, related posts, lazyloading of images and fixed some issues
 * Release v2.3 - minor issues with preview and keyword search in article preview
 * Release v2.4 - enchange nicheitems, attributevalues saving
+* Release v2.5 - search articles to copy hyperlinks for articles interlinking
