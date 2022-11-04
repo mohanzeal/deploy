@@ -26,3 +26,4 @@
 * Release - v2.1  - adjust website to start writing posts
 * Release - v2.2  - related posts, recent posts, lazy loading of images, listicles intro, etc and minor bug fixes
 * Release - v2.3  - fix index page image issues
+* Release - v2.4  - test and trial with cloudfront cache
